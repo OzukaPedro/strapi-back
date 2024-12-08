@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "viagens",
+  "info": {
+    "singularName": "viagem",
+    "pluralName": "viagens",
+    "displayName": "Viagem",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nome": {
+      "type": "string",
+      "required": true
+    },
+    "valor": {
+      "type": "decimal"
+    },
+    "ufOrigem": {
+      "type": "string",
+      "required": true
+    },
+    "cidadeOrigem": {
+      "type": "string",
+      "required": true
+    },
+    "ufDestino": {
+      "type": "string",
+      "required": true
+    },
+    "cidadeDestino": {
+      "type": "string",
+      "required": true
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "viagens"
+    }
+  }
+}

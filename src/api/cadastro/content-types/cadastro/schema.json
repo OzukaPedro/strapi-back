@@ -1,0 +1,49 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cadastros",
+  "info": {
+    "singularName": "cadastro",
+    "pluralName": "cadastros",
+    "displayName": "Cadastro",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "uf": {
+      "type": "string",
+      "required": true
+    },
+    "cidade": {
+      "type": "string",
+      "required": true
+    },
+    "bairro": {
+      "type": "string",
+      "required": true
+    },
+    "logradouro": {
+      "type": "string",
+      "required": true
+    },
+    "numero": {
+      "type": "string",
+      "required": true
+    },
+    "cep": {
+      "type": "string",
+      "required": true
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "cadastros"
+    },
+    "tipo": {
+      "type": "string"
+    }
+  }
+}

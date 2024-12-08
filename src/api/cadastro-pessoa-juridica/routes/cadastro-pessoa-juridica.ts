@@ -1,0 +1,7 @@
+/**
+ * cadastro-pessoa-juridica router
+ */
+
+import { factories } from '@strapi/strapi';
+
+export default factories.createCoreRouter('api::cadastro-pessoa-juridica.cadastro-pessoa-juridica');

@@ -1,0 +1,76 @@
+{
+  "kind": "collectionType",
+  "collectionName": "contratos",
+  "info": {
+    "singularName": "contrato",
+    "pluralName": "contratos",
+    "displayName": "Contrato",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "descricao": {
+      "type": "string",
+      "required": true
+    },
+    "valor": {
+      "type": "decimal",
+      "required": true
+    },
+    "parcelado": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "parcelas": {
+      "type": "integer",
+      "min": 2,
+      "required": false
+    },
+    "dataEmissao": {
+      "type": "date",
+      "required": true
+    },
+    "dataValidade": {
+      "type": "date",
+      "required": true
+    },
+    "dataInicio": {
+      "type": "date",
+      "required": true
+    },
+    "dataFinal": {
+      "type": "date",
+      "required": true
+    },
+    "usuario": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "contratos"
+    },
+    "contratante": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::cadastro.cadastro"
+    },
+    "contratado": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::cadastro.cadastro"
+    },
+    "modelo": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::modelo.modelo"
+    },
+    "viagem": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::viagem.viagem"
+    }
+  }
+}
