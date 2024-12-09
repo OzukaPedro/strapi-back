@@ -369,74 +369,6 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiCadastroPessoaFisicaCadastroPessoaFisica
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'cadastro_pessoa_fisicas';
-  info: {
-    description: 'Cadastro de Pessoa F\u00EDsica';
-    displayName: 'Cadastro_Pessoa_Fisica';
-    pluralName: 'cadastro-pessoa-fisicas';
-    singularName: 'cadastro-pessoa-fisica';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    cadastro: Schema.Attribute.Relation<'oneToOne', 'api::cadastro.cadastro'> &
-      Schema.Attribute.Required;
-    cpf: Schema.Attribute.String & Schema.Attribute.Required;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::cadastro-pessoa-fisica.cadastro-pessoa-fisica'
-    > &
-      Schema.Attribute.Private;
-    nome: Schema.Attribute.String & Schema.Attribute.Required;
-    publishedAt: Schema.Attribute.DateTime;
-    rg: Schema.Attribute.String & Schema.Attribute.Required;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiCadastroPessoaJuridicaCadastroPessoaJuridica
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'cadastro_pessoa_juridicas';
-  info: {
-    description: 'Cadastro de Pessoa Jur\u00EDdica';
-    displayName: 'Cadastro_Pessoa_Juridica';
-    pluralName: 'cadastro-pessoa-juridicas';
-    singularName: 'cadastro-pessoa-juridica';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    cadastro: Schema.Attribute.Relation<'oneToOne', 'api::cadastro.cadastro'> &
-      Schema.Attribute.Required;
-    cnpj: Schema.Attribute.String & Schema.Attribute.Required;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    inscricaoEstadual: Schema.Attribute.String & Schema.Attribute.Required;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::cadastro-pessoa-juridica.cadastro-pessoa-juridica'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    razaoSocial: Schema.Attribute.String & Schema.Attribute.Required;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface ApiCadastroCadastro extends Struct.CollectionTypeSchema {
   collectionName: 'cadastros';
   info: {
@@ -452,9 +384,12 @@ export interface ApiCadastroCadastro extends Struct.CollectionTypeSchema {
     bairro: Schema.Attribute.String & Schema.Attribute.Required;
     cep: Schema.Attribute.String & Schema.Attribute.Required;
     cidade: Schema.Attribute.String & Schema.Attribute.Required;
+    cnpj: Schema.Attribute.String;
+    cpf: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    inscricaoEstadual: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -462,8 +397,11 @@ export interface ApiCadastroCadastro extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     logradouro: Schema.Attribute.String & Schema.Attribute.Required;
+    nome: Schema.Attribute.String;
     numero: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
+    razaoSocial: Schema.Attribute.String;
+    rg: Schema.Attribute.String;
     tipo: Schema.Attribute.String;
     uf: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
@@ -1062,9 +1000,6 @@ export interface PluginUsersPermissionsUser
     draftAndPublish: false;
   };
   attributes: {
-    asLogged: Schema.Attribute.Boolean &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<false>;
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     cadastros: Schema.Attribute.Relation<'oneToMany', 'api::cadastro.cadastro'>;
     confirmationToken: Schema.Attribute.String & Schema.Attribute.Private;
@@ -1120,8 +1055,6 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
-      'api::cadastro-pessoa-fisica.cadastro-pessoa-fisica': ApiCadastroPessoaFisicaCadastroPessoaFisica;
-      'api::cadastro-pessoa-juridica.cadastro-pessoa-juridica': ApiCadastroPessoaJuridicaCadastroPessoaJuridica;
       'api::cadastro.cadastro': ApiCadastroCadastro;
       'api::contrato.contrato': ApiContratoContrato;
       'api::modelo.modelo': ApiModeloModelo;

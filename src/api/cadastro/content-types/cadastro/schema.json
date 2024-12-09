@@ -44,6 +44,24 @@
     },
     "tipo": {
       "type": "string"
+    },
+    "cpf": {
+      "type": "string"
+    },
+    "cnpj": {
+      "type": "string"
+    },
+    "razaoSocial": {
+      "type": "string"
+    },
+    "nome": {
+      "type": "string"
+    },
+    "rg": {
+      "type": "string"
+    },
+    "inscricaoEstadual": {
+      "type": "string"
     }
   }
 }
