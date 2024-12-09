@@ -385,6 +385,10 @@ export interface ApiCadastroCadastro extends Struct.CollectionTypeSchema {
     cep: Schema.Attribute.String & Schema.Attribute.Required;
     cidade: Schema.Attribute.String & Schema.Attribute.Required;
     cnpj: Schema.Attribute.String;
+    contratoes: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::contrato.contrato'
+    >;
     cpf: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -426,9 +430,12 @@ export interface ApiContratoContrato extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    contratado: Schema.Attribute.Relation<'oneToOne', 'api::cadastro.cadastro'>;
-    contratante: Schema.Attribute.Relation<
-      'oneToOne',
+    contratados: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::cadastro.cadastro'
+    >;
+    contratantes: Schema.Attribute.Relation<
+      'manyToMany',
       'api::cadastro.cadastro'
     >;
     createdAt: Schema.Attribute.DateTime;
@@ -445,7 +452,7 @@ export interface ApiContratoContrato extends Struct.CollectionTypeSchema {
       'api::contrato.contrato'
     > &
       Schema.Attribute.Private;
-    modelo: Schema.Attribute.Relation<'oneToOne', 'api::modelo.modelo'>;
+    modelos: Schema.Attribute.Relation<'manyToMany', 'api::modelo.modelo'>;
     parcelado: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<false>;
@@ -460,12 +467,12 @@ export interface ApiContratoContrato extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    usuario: Schema.Attribute.Relation<
-      'manyToOne',
+    usuarios: Schema.Attribute.Relation<
+      'manyToMany',
       'plugin::users-permissions.user'
     >;
     valor: Schema.Attribute.Decimal & Schema.Attribute.Required;
-    viagem: Schema.Attribute.Relation<'oneToOne', 'api::viagem.viagem'>;
+    viagems: Schema.Attribute.Relation<'manyToMany', 'api::viagem.viagem'>;
   };
 }
 
@@ -481,7 +488,11 @@ export interface ApiModeloModelo extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    clausulas: Schema.Attribute.Text & Schema.Attribute.Required;
+    clausulas: Schema.Attribute.JSON;
+    contratoes: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::contrato.contrato'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -519,6 +530,10 @@ export interface ApiViagemViagem extends Struct.CollectionTypeSchema {
   attributes: {
     cidadeDestino: Schema.Attribute.String & Schema.Attribute.Required;
     cidadeOrigem: Schema.Attribute.String & Schema.Attribute.Required;
+    contratoes: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::contrato.contrato'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1004,7 +1019,10 @@ export interface PluginUsersPermissionsUser
     cadastros: Schema.Attribute.Relation<'oneToMany', 'api::cadastro.cadastro'>;
     confirmationToken: Schema.Attribute.String & Schema.Attribute.Private;
     confirmed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
-    contratos: Schema.Attribute.Relation<'oneToMany', 'api::contrato.contrato'>;
+    contratoes: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::contrato.contrato'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

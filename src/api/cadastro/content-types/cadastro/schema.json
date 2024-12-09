@@ -62,6 +62,12 @@
     },
     "inscricaoEstadual": {
       "type": "string"
+    },
+    "contratoes": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::contrato.contrato",
+      "mappedBy": "contratados"
     }
   }
 }
