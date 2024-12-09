@@ -65,12 +65,6 @@
       "inversedBy": "users",
       "configurable": false
     },
-    "contratos": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::contrato.contrato",
-      "mappedBy": "usuario"
-    },
     "modelos": {
       "type": "relation",
       "relation": "oneToMany",
@@ -88,6 +82,12 @@
       "relation": "oneToMany",
       "target": "api::cadastro.cadastro",
       "mappedBy": "user"
+    },
+    "contratoes": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::contrato.contrato",
+      "mappedBy": "usuarios"
     }
   }
 }

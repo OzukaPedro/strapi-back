@@ -46,31 +46,35 @@
       "type": "date",
       "required": true
     },
-    "usuario": {
+    "usuarios": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "plugin::users-permissions.user",
-      "inversedBy": "contratos"
+      "inversedBy": "contratoes"
     },
-    "contratante": {
+    "contratantes": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::cadastro.cadastro"
+      "relation": "manyToMany",
+      "target": "api::cadastro.cadastro",
+      "inversedBy": "contratoes"
     },
-    "contratado": {
+    "contratados": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::cadastro.cadastro"
+      "relation": "manyToMany",
+      "target": "api::cadastro.cadastro",
+      "inversedBy": "contratoes"
     },
-    "modelo": {
+    "modelos": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::modelo.modelo"
+      "relation": "manyToMany",
+      "target": "api::modelo.modelo",
+      "inversedBy": "contratoes"
     },
-    "viagem": {
+    "viagems": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::viagem.viagem"
+      "relation": "manyToMany",
+      "target": "api::viagem.viagem",
+      "inversedBy": "contratoes"
     }
   }
 }
